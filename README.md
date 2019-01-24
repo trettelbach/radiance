@@ -1,4 +1,4 @@
-# radiance
+# RADIAnCE - RADio-Image Artifact Classification nEtwork
 This application is an image classification tool that aims at classifying flux density images observed by the MWA telescope. The classes specify the suitability of the images' incorporation into a sky survey. It is based on a convolutional neural network and uses the PyTorch framework. 
 
 This repository provides the necessary code to train a model on fits image files: *scripts/cnn_gleam_train.py*. It also provides a pre-trained model *GleamNet* that can be directly used as the classifier with the code from *scripts/cnn_gleam_test.py*. 
