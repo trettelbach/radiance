@@ -30,7 +30,9 @@ class CnnGleam(nn.Module):
         self.fc3 = nn.DataParallel(self.fc3)
 
     def forward(self, x):
-        # defining the architecture and exact layer sequence of the model
+        ''' defines the architecture and 
+        exact layer sequence of the model
+        '''
         out = self.layer1(x)
 
         # for visualizing the filters of the first layer
