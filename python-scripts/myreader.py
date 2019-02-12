@@ -37,8 +37,11 @@ class MyCustomDatasetFits(data.Dataset):
         self.img_as_tensor = torch.Tensor()
         self.transformation = transformation
 
-    # returns the data and labels. It is called from the dataloader
+        
     def __getitem__(self, index):
+        ''' returns the data and labels.
+        It is called from the dataloader
+        '''
         # Get image name from the dataframe
         single_image_name = self.image_arr[index]
 
