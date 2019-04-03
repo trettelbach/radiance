@@ -65,7 +65,8 @@ It can be run with the following:
 ```docker run trettelbach/pytorch_astro:latest python <PATH TO cnn_gleam_all.py> <PATH TO THE DIRECTORY FOR OUTPUTS> <STATS>```
 
 
-# Credits:
+# Credits
+This work was supported by resources provided by the Pawsey Supercomputing Centre with funding from the Australian Government and the Government of Western Australia.
 
 # License
-The code is published under the xxx license.
+The code is published under the Academic Free License (AFL) v. 3.0.
