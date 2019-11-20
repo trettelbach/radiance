@@ -3,7 +3,7 @@ This application is an image classification tool that aims at classifying flux d
 
 The main element in this repository is the script *python-scripts/cnn_gleam_inference.py*. It can be run with the following command: 
 *shifter run trettelbach/pytorch_astro:latest python <PATH/TO/INFERENCE.py> <'PATH/TO/DIRECTORY/OF/CSV-FILE/'> <STATS>*
-The job script *slurm-scripts/cnn.slurm* represents the further necessary specifications to run the network on the clusters from the Pawsey Supercomputing Centre. However, in order to run the pre-trained network, it is necessary to have the information on the pre-trained weights. These are stored in a file ca. 270 MB in size, making them too large for GitHub. If you would like access to this file, please contact me via tabea.rettelbach@awi.de.
+The job script *slurm-scripts/cnn.slurm* represents the further necessary specifications to run the network on the clusters from the Pawsey Supercomputing Centre. However, in order to run the pre-trained network, it is necessary to have the information on the pre-trained weights. These are stored in a file ca. 270 MB in size, making them too large for GitHub. If you would like access to this file, please contact me via tabea dot rettelbach at awi dot de.
 
 The network's initial aim was to identify images from the GLEAM and GLEAM-X dataset that showed artifacts from either RFI or from undeconvolved sources in the sidelobes of the telescope's primary beam (cf. Rettelbach & Hurley-Walker 2020, in prep). The model's architecture is therefore optimized for solving this specific problem. To use this architecture for solving other problems via transfer learning, certain specifications and hyperparameters might need to be adapted. 
 
