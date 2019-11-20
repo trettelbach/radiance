@@ -50,7 +50,7 @@ def main():
         sys.stdout.write('updating fits headers and producing further statistics\n')
 
     # load testing set, data augmentation
-    fits_test = myreader.MyCustomDatasetFits(PATH + CSV, transformation='test')
+    fits_test = myreader.MyCustomDatasetFits(CSV, transformation='test')
     testloader = torch.utils.data.DataLoader(fits_test, shuffle=False, num_workers=1)
 
     # initialize the architecture for the model

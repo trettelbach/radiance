@@ -20,6 +20,7 @@ def main():
     # read path to csv and if user wants output statistics from command line argument 
     parser = argparse.ArgumentParser(description='Train and test the GleamNet for Classification')
     parser.add_argument('path', metavar='PATH', type=str, nargs='?', help='path to the csv with file locations')
+    parser.add_argument('csv_loc', metavar='CSV', type=str, nargs='?', help='filname of the csv with image file locations')
     parser.add_argument('statistics', metavar='STATS', type=int, nargs='?', help='determine if statistics should be calculated')
     args = parser.parse_args()
     print(args.statistics)
@@ -27,6 +28,7 @@ def main():
     # set path to data, number of dataset labels,
     # number of epochs to train, initial learning rate
     PATH = args.path
+    CSV = args.csv_loc
     NLABEL = 4
     EPOCHS = 50
     INIT_LR = 5e-7
@@ -52,7 +54,7 @@ def main():
         sys.stdout.write('training the model and producing further statistics\n')
 
     # load training set, data augmentation
-    fits_train = myreader.MyCustomDatasetFits(PATH + 'training.csv', transformation='train')
+    fits_train = myreader.MyCustomDatasetFits(CSV, transformation='train')
     trainloader = torch.utils.data.DataLoader(fits_train, shuffle=True, num_workers=1)
 
     # make instance of the Conv Net, send to GPU if available
