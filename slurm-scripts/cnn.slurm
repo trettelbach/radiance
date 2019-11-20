@@ -11,4 +11,4 @@
 
 module load shifter
 
-shifter run trettelbach/pytorch_astro:latest python <PATH/TO/PYTHONFILE.py> <'PATH/TO/DIRECTORY/OF/CSV-FILE/'> <STATS>
+shifter run trettelbach/pytorch_astro:latest python <PATH/TO/PYTHONFILE.py> <PATH/TO/THE/DIRECTORY/FOR/OUTPUTS/> <'PATH/TO/DIRECTORY/OF/CSV-FILE/'> <STATS>
