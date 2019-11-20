@@ -10,8 +10,8 @@ class CenterCropFits(object):
 
         Args:
             size (sequence or int): Desired output size of the crop. If size is an
-            int instead of sequence like (h, w), a square crop (size, size) is
-            made.
+                int instead of sequence like (h, w), a square crop (size, size) is
+                made.
         """
     def __init__(self, size):
         if isinstance(size, numbers.Number):
@@ -75,7 +75,7 @@ def to_tensor_fits(pic):
         img = torch.from_numpy(pic.transpose((2, 0, 1)))
         return img
 
-
+# cutrange:
 class CutRangeFits(object):
     """Condenses the range of a fits to a maximum and a minimum value.
     """
