@@ -44,7 +44,6 @@ The script ```scripts/cnn_gleam_inference.py``` loads the saved weights of the p
 - testing and training losses (per image per epoch)
 - time needed for each prediction/prediction and backpropagation testing and training (per image per epoch)
 
-
 It can be run with the following:
 
 ```docker run trettelbach/pytorch_astro:latest python <PATH/TO/INFERENCE.py> <PATH/TO/THE/DIRECTORY/FOR/OUTPUTS/> <'PATH/TO/DIRECTORY/OF/CSV-FILE'>  <STATS>```
@@ -63,13 +62,10 @@ must be adapted within the script.
 
 It can be run with the following:
 
-```docker run trettelbach/pytorch_astro:latest python <PATH TO cnn_gleam_train.py> <PATH TO THE 
-DIRECTORY FOR OUTPUTS> <STATS>```
+```docker run trettelbach/pytorch_astro:latest python <PATH TO cnn_gleam_train.py> <PATH TO THE DIRECTORY FOR OUTPUTS> <STATS>```
 
-# Credits
-This work was supported by resources provided by the Pawsey Supercomputing Centre with funding 
-from the Australian Government and the Government of Western Australia.
+## Credits
+This work was supported by resources provided by the Pawsey Supercomputing Centre with funding from the Australian Government and the Government of Western Australia.
 
-# License
+## License
 The code is published under the Academic Free License (AFL) v. 3.0.
-
