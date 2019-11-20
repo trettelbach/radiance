@@ -1,11 +1,13 @@
 # RADIAnCE - RADio-Image Artifact Classification nEtwork
 This application is an image classification tool that aims at classifying flux density images observed by the MWA telescope. The classes specify the suitability of the images' incorporation into a sky survey. The classifier is based on a convolutional neural network and uses the PyTorch framework. 
 
-This repository provides the necessary code to train a model on fits image files: *scripts/cnn_gleam_train.py*. It also provides a pre-trained model *GleamNet* that contains all the saved weights and can directly be used as the classifier with the code from *scripts/cnn_gleam_test.py*. 
+The main element in this repository is the script *python-scripts/cnn_gleam_inference.py*. It can be run with the following command: 
+*shifter run trettelbach/pytorch_astro:latest python <PATH/TO/INFERENCE.py> <'PATH/TO/DIRECTORY/OF/CSV-FILE/'> <STATS>*
+The job script *slurm-scripts/cnn.slurm* represents the further necessary specifications to run the network on the clusters from the Pawsey Supercomputing Centre. However, in order to run the pre-trained network, it is necessary to have the information on the pre-trained weights. These are stored in a file ca. 270 MB in size, making them too large for GitHub. If you would like access to this file, please contact me via tabea.rettelbach@awi.de.
 
-The network's initial aim was to identify images from the GLEAM and GLEAM-X dataset that showed artifacts from either RFI or from undeconvolved sources in the sidelobes of the telescope's primary beam (cf. Rettelbach & Hurley-Walker 2019, in prep). The model's architecture is therefore optimized for solving this specific problem. To use this architecture for solving other problems via transfer learning, certain specifications and hyperparameters might need to be adapted. 
+The network's initial aim was to identify images from the GLEAM and GLEAM-X dataset that showed artifacts from either RFI or from undeconvolved sources in the sidelobes of the telescope's primary beam (cf. Rettelbach & Hurley-Walker 2020, in prep). The model's architecture is therefore optimized for solving this specific problem. To use this architecture for solving other problems via transfer learning, certain specifications and hyperparameters might need to be adapted. 
 
-For each fits-file, the classifier will output probabilities for each target class. These results then will be added to the respective image's fits header file under a new keyword. If desired, the code will also output statistics for the classification, such as losses and the certainty of a prediction.
+For each fits-file, the classifier will output probabilities for each target class. These results will then be added to the respective image's fits header file under a new keyword. If desired, the code will also output statistics for the classification, such as losses and the certainty of a prediction.
 
 ## Installation:
 In order to run and make use of all features, the following libraries need to be installed:
@@ -17,8 +19,8 @@ In order to run and make use of all features, the following libraries need to be
 - ```scikit-learn```
 - ```scikit-image```
 
-This repo also provides a Dockerfile with which a Docker-image was created. It also includes all necessary libraries.
-A container from the image can be built with:
+However, there is a Docker image which also includes all necessary libraries.
+A container from this image can be built with:
 
 ```docker pull trettelbach/pytorch_astro```
 
@@ -31,7 +33,7 @@ For guides on installing Docker, please refer to the [official Docker documentat
 ## Usage:
 The repository contains three scripts which make use of the neural network. All scripts are coded with python and are conceived as command-line applications.
 ### Testing/Validating/Using only
-The script ```scripts/cnn_gleam_use.py``` loads the saved weights of the pre-trained network *GleamNet* and runs the model on a validation/testing/unknown dataset. The fits header file will be updated to contain information on the classifications made by the network. If desired (if STATS set to 1, see below), it will also output text files with information on:
+The script ```scripts/cnn_gleam_inference.py``` loads the saved weights of the pre-trained network and runs the model on a validation/testing/unknown dataset. The fits header file will be updated to contain information on the classifications made by the network. If desired (if STATS set to 1, see below), it will also output text files with information on:
 
 
 - true classes for testing and training (per image per epoch)
@@ -46,7 +48,7 @@ It can be run with the following:
 
 ```docker run trettelbach/pytorch_astro:latest python <PATH TO cnn_gleam_use.py> <PATH TO THE DIRECTORY FOR OUTPUTS> <STATS>```
 
-```<STATS>``` determines if the further statistics/outputs of the run shall be output as well. It can either assume the values 0 (no statistics) or 1 (statistics).
+```<STATS>``` determines if the further statistics/outputs of the run shall be output as well. It can either assume the values 0 (no statistics) or 1 (statistics). **When there is no information on the true label, statistics cannot be output.**
 
 When running the application on HPC systems, such as clusters by the Pawsey Supercomputing Centre, [*Shifter*](https://github.com/NERSC/shifter) will need to be used instead of Docker. 
 
